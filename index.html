@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>My first Three.js app</title>
+    <style>canvas { width: 600px; height: 400px }</style>
+</head>
+<body>
+<script src="js/three.min.js"></script>
+<script src="js/planets.js"></script>
+
+<script>
+    var scene = new THREE.Scene();
+    var width = 15;
+    var height = 10;
+    var camera = new THREE.PerspectiveCamera( 20, width / height, 1, 1000 );
+    scene.add(new THREE.AmbientLight(0x333333));
+
+    var directionalLight = new THREE.DirectionalLight( 0xf0f0f0, 0.8 );
+    directionalLight.position.set( 5, 3, 5 );
+    scene.add( directionalLight );
+
+    var renderer = new THREE.WebGLRenderer({ antialiasing: false });
+    renderer.setSize(900,600);
+    document.body.appendChild( renderer.domElement );
+
+    var current = 4;
+    var total = 9;
+
+    function nextPlanet(){
+        current++;
+    }
+
+    function drawPlanet(camera){
+        switch(current){
+            case 1:
+                camera.position.z =4;
+                return createMercury();
+                break;
+            case 2:
+                camera.position.z =4;
+                return createVenus();
+                break;
+            case 3:
+                camera.position.z =4;
+                return createEarth();
+                break;
+            case 4:
+                camera.position.z =4;
+                return createMars();
+                break;
+            case 5:
+                camera.position.z =50;
+                return createJupiter();
+                break;
+            case 6:
+                camera.position.z =50;
+                return createSaturn();
+                break;
+            case 7:
+                camera.position.z =50;
+                return createUranus();
+                break;
+            case 8:
+                camera.position.z =50;
+                return createNeptune();
+                break;
+            case 9:
+                camera.position.z =1.1;
+                return createPluto();
+                break;
+            case 10:
+                camera.position.z =2;
+                return createMoon();
+                break;
+            case 11:
+                camera.position.z = 500;
+                return createSun();
+                break;
+            case 12:
+                camera.position.z = 4;
+                return createMarsWater();
+                break;
+        }
+    }
+
+    var planet = drawPlanet(camera);
+
+    scene.add(planet);
+
+    function render(){
+        requestAnimationFrame(render);
+        planet.rotation.y  += 0.002;
+        renderer.render(scene, camera);
+    }
+    render();
+
+</script>
+</body>
+</html>
