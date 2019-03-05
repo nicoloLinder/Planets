@@ -1,25 +1,26 @@
 <html>
 <head>
-    <title>My first Three.js app</title>
-    <style>canvas { width: 600px; height: 400px }</style>
+    <title>Planetarium</title>
+    <style>canvas {}</style>
 </head>
-<body>
+<body style="background:black;">
 <script src="js/three.min.js"></script>
 <script src="js/planets.js"></script>
 
 <script>
     var scene = new THREE.Scene();
-    var width = 15;
-    var height = 10;
+    var width = window.innerWidth;
+    var height = window.innerHeight;
     var camera = new THREE.PerspectiveCamera( 20, width / height, 1, 1000 );
     scene.add(new THREE.AmbientLight(0x333333));
+
 
     var directionalLight = new THREE.DirectionalLight( 0xf0f0f0, 0.8 );
     directionalLight.position.set( 5, 3, 5 );
     scene.add( directionalLight );
 
     var renderer = new THREE.WebGLRenderer({ antialiasing: false });
-    renderer.setSize(900,600);
+    renderer.setSize(window.innerWidth,window.innerHeight);
     document.body.appendChild( renderer.domElement );
 
     var current = 4;
